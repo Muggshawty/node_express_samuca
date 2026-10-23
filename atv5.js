@@ -2,21 +2,18 @@ import express from "express";
 const app = express();
 const PORT = 3000;
 
-// Middleware para permitir o recebimento de dados em JSON
 app.use(express.json());
 
-// Banco de dados em memória (Array)
+
 let tarefas = [
     { id: 1, titulo: "Estudar Node.js", concluida: false },
     { id: 2, titulo: "Configurar o Postman", concluida: true }
 ];
 
-// 1. GET /tarefas - Listar todas as tarefas
 app.get('/tarefas', (req, res) => {
     res.status(200).json(tarefas);
 });
 
-// 2. GET /tarefas/:id - Consultar uma tarefa pelo identificador
 app.get('/tarefas/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const tarefa = tarefas.find(t => t.id === id);
@@ -28,7 +25,7 @@ app.get('/tarefas/:id', (req, res) => {
     res.status(200).json(tarefa);
 });
 
-// 3. POST /tarefas - Cadastrar uma nova tarefa
+
 app.post('/tarefas', (req, res) => {
     const { titulo, concluida } = req.body;
 
@@ -46,7 +43,7 @@ app.post('/tarefas', (req, res) => {
     res.status(201).json(novaTarefa);
 });
 
-// 4. DELETE /tarefas/:id - Remover uma tarefa pelo identificador
+
 app.delete('/tarefas/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const indice = tarefas.findIndex(t => t.id === id);
@@ -55,12 +52,11 @@ app.delete('/tarefas/:id', (req, res) => {
         return res.status(404).json({ erro: "Tarefa não encontrada." });
     }
 
-    // Remove a tarefa do array
+
     tarefas.splice(indice, 1);
     res.status(200).json({ mensagem: "Tarefa removida com sucesso." });
 });
 
-// Inicializa o servidor
 app.listen(PORT, () => {
     console.log(`Servidor rodando com sucesso na porta ${PORT}`);
 });
