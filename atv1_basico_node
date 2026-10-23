@@ -3,12 +3,12 @@ const app = express();
 const PORT = 3000;
 
 app.get('/', (req, res) => {
-    res.send('<h1>Bem-vindo ao nosso servidor Express!</h1><p>Esta é a página inicial.</p>');
+    res.send('Bem-vindo ao nosso servidor Express!Esta é a página inicial.');
 });
 
 
 app.get('/sobre', (req, res) => {
-    res.send('<h1>Sobre Nós</h1><p>Somos uma empresa focada em criar soluções web modernas e eficientes.</p>');
+    res.send('Sobre Nós: Somos uma empresa focada em criar soluções web modernas e eficientes.');
 });
 
 app.listen(PORT, () => {
